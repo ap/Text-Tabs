@@ -1,4 +1,9 @@
 
+= 1998/11/29
+
+Combined Fill.pm into Wrap.pm.  It appears there are versions of
+Wrap.pm with fill in them.
+
 = 1998/11/28
 
 Over the last couple of years, many people sent in various

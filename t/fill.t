@@ -53,7 +53,7 @@ print "1..";
 print @tests/2;
 print "\n";
 
-use Text::Fill;
+use Text::Wrap;
 
 $rerun = $ENV{'PERL_DL_NONLAZY'} ? 0 : 1;
 
