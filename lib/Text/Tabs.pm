@@ -7,7 +7,7 @@ require Exporter;
 @EXPORT = qw(expand unexpand $tabstop);
 
 use vars qw($VERSION $tabstop $debug);
-$VERSION = 96.051501;
+$VERSION = 96.121201;
 
 use strict;
 
@@ -27,7 +27,7 @@ sub expand
 			/sex;
 	}
 	return @l if wantarray;
-	return @l[0];
+	return $l[0];
 }
 
 sub unexpand
@@ -60,7 +60,7 @@ sub unexpand
 		$x = join("\n", @lines);
 	}
 	return @l if wantarray;
-	return @l[0];
+	return $l[0];
 }
 
 1;
