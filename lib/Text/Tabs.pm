@@ -7,7 +7,7 @@ require Exporter;
 @EXPORT = qw(expand unexpand $tabstop);
 
 use vars qw($VERSION $tabstop $debug);
-$VERSION = 96.041801;
+$VERSION = 96.051501;
 
 use strict;
 
@@ -39,10 +39,10 @@ sub unexpand
 	my @lines;
 	my $lastbit;
 	for $x (@l) {
-		@lines = split("\n", $x);
+		@lines = split("\n", $x, -1);
 		for $line (@lines) {
 			$line = expand($line);
-			@e = split(/(.{$tabstop})/,$line);
+			@e = split(/(.{$tabstop})/,$line,-1);
 			$lastbit = pop(@e);
 			$lastbit = '' unless defined $lastbit;
 			$lastbit = "\t"
