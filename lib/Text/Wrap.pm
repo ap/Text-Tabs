@@ -3,7 +3,7 @@ package Text::Wrap;
 require Exporter;
 
 @ISA = (Exporter);
-@EXPORT = qw(wrap fill);
+@EXPORT = qw(wrap);
 @EXPORT_OK = qw($columns);
 
 $VERSION = 96.041801;
@@ -63,6 +63,56 @@ sub wrap
 	return $r;
 }
 
+
+1;
+__DATA__
+
+=head1 NAME
+
+Text::Wrap - line wrapping to form simple paragraphs
+
+=head1 SYNOPSIS 
+
+	use Text::Wrap
+
+	print wrap($initial_tab, $subsequent_tab, @text);
+
+	use Text::Wrap qw(wrap $columns);
+
+	$columns = 132;
+
+=head1 DESCRIPTION
+
+Text::Wrap::wrap() is a very simple paragraph formatter.  It formats a
+single paragraph at a time by breaking lines at word boundries.
+Indentation is controlled for the first line ($initial_tab) and
+all subsquent lines ($subsequent_tab) independently.  $Text::Wrap::columns
+should be set to the full width of your output device.
+
+=head1 EXAMPLE
+
+	print wrap("\t","","This is a bit of text that forms 
+		a normal book-style paragraph");
+
+=head1 AUTHOR
+
+David Muir Sharnoff <muir@idiom.com> with help from Tim Pierce and
+others.
+
+=cut
+
+	print fill($initial_tab, $subsequent_tab, @text);
+
+	print fill("", "", `cat book`);
+
+Text::Wrap::fill() is a simple multi-paragraph formatter.  It formats
+each paragraph separately and then joins them together when it's done.  It
+will destory any whitespace in the original text.  It breaks text into
+paragraphs by looking for whitespace after a newline.  In other respects
+it acts like wrap().
+
+# Tim Pierce did a faster version of this:
+
 sub fill 
 {
 	my ($ip, $xp, @raw) = @_;
@@ -81,49 +131,3 @@ sub fill
 	return join ($ip eq $xp ? "\n\n" : "\n", @para);
 }
 
-
-1;
-__DATA__
-
-=head1 NAME
-
-Text::Wrap - line wrapping to form simple paragraphs
-
-=head1 SYNOPSIS 
-
-	use Text::Wrap
-
-	print wrap($initial_tab, $subsequent_tab, @text);
-	print fill($initial_tab, $subsequent_tab, @text);
-
-	use Text::Wrap qw(wrap fill $columns);
-
-	$columns = 132;
-
-=head1 DESCRIPTION
-
-Text::Wrap::wrap() is a very simple paragraph formatter.  It formats a
-single paragraph at a time by breaking lines at word boundries.
-Indentation is controlled for the first line ($initial_tab) and
-all subsquent lines ($subsequent_tab) independently.  $Text::Wrap::columns
-should be set to the full width of your output device.
-
-Text::Wrap::fill() is a simple multi-paragraph formatter.  It formats
-each paragraph separately and then joins them together when it's done.  It
-will destory any whitespace in the original text.  It breaks text into
-paragraphs by looking for whitespace after a newline.  In other respects
-it acts like wrap().
-
-=head1 EXAMPLE
-
-	print wrap("\t","","This is a bit of text that forms 
-		a normal book-style paragraph");
-
-	print fill("", "", `cat book`);
-
-=head1 AUTHOR
-
-David Muir Sharnoff <muir@idiom.com> with help from Tim Pierce and
-others.
-
-=cut

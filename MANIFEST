@@ -5,4 +5,3 @@ lib/Text/Wrap.pm
 lib/Text/Tabs.pm
 t/tabs.t
 t/wrap.t
-t/fill.t
