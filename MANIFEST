@@ -1,7 +1,10 @@
 MANIFEST
+CHANGELOG
 Makefile.PL
 README
 lib/Text/Wrap.pm
 lib/Text/Tabs.pm
+lib/Text/Fill.pm
 t/tabs.t
 t/wrap.t
+t/fill.t

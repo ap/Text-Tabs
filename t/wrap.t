@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl -w -I.
 
 @tests = (split(/\nEND\n/s, <<DONE));
 TEST1
@@ -48,6 +48,14 @@ END
  put
 END
 TEST6
+11111111 22222222 33333333 44444444 55555555 66666666 77777777 888888888 999999999 aaaaaaaaa bbbbbbbbb ccccccccc ddddddddd eeeeeeeee ffffffff gggggggg hhhhhhhh iiiiiiii jjjjjjjj kkkkkkkk llllllll mmmmmmmmm nnnnnnnnn ooooooooo ppppppppp qqqqqqqqq rrrrrrrrr sssssssss
+END
+   11111111 22222222 33333333 44444444 55555555 66666666 77777777 888888888
+ 999999999 aaaaaaaaa bbbbbbbbb ccccccccc ddddddddd eeeeeeeee ffffffff
+ gggggggg hhhhhhhh iiiiiiii jjjjjjjj kkkkkkkk llllllll mmmmmmmmm nnnnnnnnn
+ ooooooooo ppppppppp qqqqqqqqq rrrrrrrrr sssssssss
+END
+TEST7
 c3t1d0s6 c4t1d0s6 c5t1d0s6 c6t1d0s6 c7t1d0s6 c8t1d0s6 c9t1d0s6 c10t1d0s6 c11t1d0s6 c12t1d0s6 c13t1d0s6 c14t1d0s6 c15t1d0s6 c16t1d0s6 c3t1d0s0 c4t1d0s0 c5t1d0s0 c6t1d0s0 c7t1d0s0 c8t1d0s0 c9t1d0s0 c10t1d0s0 c11t1d0s0 c12t1d0s0 c13t1d0s0 c14t1d0s0 c15t1d0s0 c16t1d0s0
 END
    c3t1d0s6 c4t1d0s6 c5t1d0s6 c6t1d0s6 c7t1d0s6 c8t1d0s6 c9t1d0s6 c10t1d0s6
@@ -55,7 +63,7 @@ END
  c4t1d0s0 c5t1d0s0 c6t1d0s0 c7t1d0s0 c8t1d0s0 c9t1d0s0 c10t1d0s0 c11t1d0s0
  c12t1d0s0 c13t1d0s0 c14t1d0s0 c15t1d0s0 c16t1d0s0
 END
-TEST7
+TEST8
 A test of a very very long word.
 a123456789b123456789c123456789d123456789e123456789f123456789g123456789g1234567
 END
@@ -63,7 +71,7 @@ END
  a123456789b123456789c123456789d123456789e123456789f123456789g123456789g123
  4567
 END
-TEST8
+TEST9
 A test of a very very long word.  a123456789b123456789c123456789d123456789e123456789f123456789g123456789g1234567
 END
    A test of a very very long word. 
