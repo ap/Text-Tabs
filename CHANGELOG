@@ -1,4 +1,18 @@
 
+= 2001/01/30
+
+Bugfix by Michael G Schwern <schwern@pobox.com>: don't add extra
+whitespace when working one an array of input (as opposed to a 
+single string).
+
+Performance rewrite: use m/\G/ rather than s///.
+
+You can now specify that words that are too long to wrap can simply
+overflow the line.  Feature requested by James Hoagland 
+<hoagland@SiliconDefense.com> and by John Porter <jdporter@min.net>.
+
+Documentation changes from Rich Bowen <Rich@cre8tivegroup.com>.
+
 = 1998/11/29
 
 Combined Fill.pm into Wrap.pm.  It appears there are versions of
