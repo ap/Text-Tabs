@@ -70,9 +70,8 @@ while (@tests) {
 		print "ok $tn\n";
 	} elsif ($rerun) {
 		my $oi = $in;
-		require File::Slurp;
-		File::Slurp::write_file("#o", $back);
-		File::Slurp::write_file("#e", $out);
+		write_file("#o", $back);
+		write_file("#e", $out);
 		foreach ($in, $back, $out) {
 			s/\t/^I\t/gs;
 			s/\n/\$\n/gs;
@@ -91,4 +90,16 @@ while (@tests) {
 		print "not ok $tn\n";
 	}
 	$tn++;
+}
+
+sub write_file
+{
+	my ($f, @data) = @_;
+
+	local(*F);
+
+	open(F, ">$f") || die "open >$f: $!";
+	(print F @data) || die "write $f: $!";
+	close(F) || die "close $f: $!";
+	return 1;
 }

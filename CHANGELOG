@@ -1,3 +1,21 @@
+= 2001/09/29
+
+Philip Newton <Philip.Newton@gmx.net> sent in a clean patch that
+added support for defining words differently; that prevents 
+Text::Wrap from untainting strings; and that fixes a documentation
+bug.
+
+So that fill.t can be used in the version included in the perl
+distribution, fill.t no longer uses File::Slurp.
+
+Both Sweth Chandramouli <svc@sweth.net> and Drew Degentesh 
+<ddegentesh@daed.com> both objected to the automatic unexpand
+that Text::Wrap does on its results.  Drew sent a patch which
+has been integrated.
+
+Way back in '97, Joel Earl <jrearl@VNET.IBM.COM> asked that
+it be possible to use a line separator other than \n when
+adding new lines.  There is now support for that.
 
 = 2001/01/30
 

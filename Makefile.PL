@@ -9,5 +9,6 @@ WriteMakefile(
 	    ('ABSTRACT' => 'Expand tabs and do simple line wrapping',
 	     'AUTHOR'	=> 'David Muir Sharnoff <muir@idiom.com>') : ()),
 	'dist' => { COMPRESS=>"gzip", SUFFIX=>"gz" },
+	'INSTALLDIRS'	=> 'perl',
 	);
 
