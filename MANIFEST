@@ -1,0 +1,7 @@
+MANIFEST
+Makefile.PL
+README
+lib/Text/Wrap.pm
+lib/Text/Tabs.pm
+t/wrap.t
+t/tabs.t
