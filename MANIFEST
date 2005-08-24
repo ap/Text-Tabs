@@ -7,3 +7,4 @@ lib/Text/Tabs.pm
 t/tabs.t
 t/wrap.t
 t/fill.t
+META.yml                                 Module meta-data (added by MakeMaker)
