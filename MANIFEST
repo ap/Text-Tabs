@@ -11,7 +11,8 @@ t/37000.t
 t/39548.t
 t/belg4mit.t
 t/Jochen.t
+t/Jacobson.t
+t/Jacobson2.t
 t/sep.t
 t/sep2.t
 META.yml                                 Module meta-data (added by MakeMaker)
-

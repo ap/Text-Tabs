@@ -6,7 +6,7 @@ require Exporter;
 @EXPORT = qw(wrap fill);
 @EXPORT_OK = qw($columns $break $huge);
 
-$VERSION = 2006.0705;
+$VERSION = 2006.0711;
 
 use vars qw($VERSION $columns $debug $break $huge $unexpand $tabstop
 	$separator $separator2);
@@ -43,8 +43,8 @@ sub wrap
 	use re 'taint';
 
 	pos($t) = 0;
-	while ($t !~ /\G\s*\Z/gc) {
-		if ($t =~ /\G([^\n]{0,$ll})($break|\n*\z)/xmgc) {
+	while ($t !~ /\G(?:$break)*\Z/gc) {
+		if ($t =~ /\G([^\n]{0,$ll})($break|\n+|\z)/xmgc) {
 			$r .= $unexpand 
 				? unexpand($nl . $lead . $1)
 				: $nl . $lead . $1;
@@ -54,7 +54,7 @@ sub wrap
 				? unexpand($nl . $lead . $1)
 				: $nl . $lead . $1;
 			$remainder = defined($separator2) ? $separator2 : $separator;
-		} elsif ($huge eq 'overflow' && $t =~ /\G([^\n]*?)($break|\z)/xmgc) {
+		} elsif ($huge eq 'overflow' && $t =~ /\G([^\n]*?)($break|\n+|\z)/xmgc) {
 			$r .= $unexpand 
 				? unexpand($nl . $lead . $1)
 				: $nl . $lead . $1;

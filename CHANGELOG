@@ -1,3 +1,9 @@
+= 2006/07/11
+
+Further bomb-proofing to pass more tests: Dan Jacobson <jidanni at 
+jidanni dot org> found another way to generate a "this shouldn't happen".
+
+= 2006/07/05 
 
 Made documentation and code changes to address perlbug:
 https://rt.perl.org/rt3/Ticket/Display.html?id=30229
