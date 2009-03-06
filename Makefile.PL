@@ -7,7 +7,7 @@ WriteMakefile(
 	'VERSION_FROM' => 'lib/Text/Wrap.pm',
 	($] >= 5.005 ?
 	    ('ABSTRACT' => 'Expand tabs and do simple line wrapping',
-	     'AUTHOR'	=> 'David Muir Sharnoff <muir@idiom.com>') : ()),
+	     'AUTHOR'	=> 'David Muir Sharnoff <muir@idiom.org>') : ()),
 	'dist' => { COMPRESS=>"gzip", SUFFIX=>"gz" },
 	'INSTALLDIRS'	=> 'perl',
 	);

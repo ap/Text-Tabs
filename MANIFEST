@@ -1,18 +1,21 @@
-MANIFEST
 CHANGELOG
-Makefile.PL
-README
-lib/Text/Wrap.pm
 lib/Text/Tabs.pm
-t/tabs.t
-t/wrap.t
-t/fill.t
+lib/Text/Wrap.pm
+Makefile.PL
+MANIFEST
+META.yml                                 Module meta-data (added by MakeMaker)
+README
 t/37000.t
 t/39548.t
 t/belg4mit.t
-t/Jochen.t
-t/Jacobson.t
+t/dandv.t
+t/dnsparks.t
+t/fill.t
 t/Jacobson2.t
-t/sep.t
+t/Jacobson.t
+t/Jochen.t
 t/sep2.t
-META.yml                                 Module meta-data (added by MakeMaker)
+t/sep.t
+t/tabs.t
+t/wrap_separator2.t
+t/wrap.t
