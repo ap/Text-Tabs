@@ -1,4 +1,10 @@
 
+= 2009/04/17
+
+Added support for Unicode combining characters to both 
+Text::Tabs and Text::Wrap, plus a new test suite for each
+of these new functionalities.  --tchrist
+
 = 2009/03/05
 
 Test improvements from Dave Mitchel sent back in 2005...
