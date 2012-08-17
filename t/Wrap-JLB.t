@@ -1,5 +1,12 @@
 #!perl
 
+BEGIN {
+	if ($] <= 5.010) {
+		print "1..0 # skip this test requires perl 5.010 or greater\n";
+		exit 0;
+	}
+}
+
 use strict;
 use warnings "FATAL" => "all";
 use Text::Wrap;
@@ -36,7 +43,8 @@ our @DATA = (
 );
 
 $| = 1;
-print "0..$#DATA\n";
+my $numtests = @DATA;
+print "1..$numtests\n";
 
 $Errors += table_ok();
 check_data();
@@ -59,7 +67,7 @@ sub table_ok {
 	    } 
 	}
     } 
-    print $bad ? "not " : "", "ok 0\n";
+    print $bad ? "not " : "", "ok 1\n";
     return $bad;
 }
 
@@ -123,7 +131,8 @@ sub check_data {
 	$bad++ unless check($tab_count,   $., "NEW", "TABS");
 	$bad++ unless check($line_count,  $., "NEW", "LINES");
 
-	print $bad ? "not " : "", "ok $.\n";
+	my $num = $. + 1;
+	print $bad ? "not " : "", "ok $num\n";
 	$Errors += $bad;
 
     } 

@@ -2,7 +2,7 @@
 
 BEGIN {
 	if ($ENV{HARNESS_ACTIVE}) {
-		print "1..0 # Skipped: not a standard regression test\n";
+		print "1..0 # Skipped: not a regression test\n";
 		exit;
 	}
 	unless (eval { require Benchmark; }) {

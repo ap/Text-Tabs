@@ -1,6 +1,8 @@
 CHANGELOG
-lib/Text/Tabs.pm
-lib/Text/Wrap.pm
+lib.modern/Text/Tabs.pm
+lib.modern/Text/Tabs.pm
+lib.old/Text/Wrap.pm
+lib.old/Text/Wrap.pm
 Makefile.PL
 MANIFEST
 META.yml                                 Module meta-data (added by MakeMaker)
@@ -19,3 +21,5 @@ t/sep.t
 t/tabs.t
 t/wrap_separator2.t
 t/wrap.t
+t/Tabs-ElCid.t
+t/Wrap-JLB.t
