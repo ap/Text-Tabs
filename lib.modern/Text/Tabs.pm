@@ -126,6 +126,27 @@ in each line for both expansion and unexpansion.  These are overstrike
 characters that do not increment the logical position.  Make sure
 you have the appropriate Unicode settings enabled.
 
+=head1 EXPORTS
+
+The following are exported:
+
+=over 4
+
+=item expand
+
+=item unexpand
+
+=item $tabstop
+
+The C<$tabstop> variable controls how many column positions apart each
+tabstop is.  The default is 8.
+
+Please note that C<local($tabstop)> doesn't do the right thing and if you want
+to use C<local> to override C<$tabstop>, you need to use
+C<local($Text::Tabs::tabstop)>.
+
+=back
+
 =head1 EXAMPLE
 
   #!perl

@@ -150,7 +150,7 @@ B<Example 2>
 	$huge = 'overflow';
 
 B<Example 3>
-	
+
 	use Text::Wrap;
 
 	$Text::Wrap::columns = 72;
@@ -170,6 +170,9 @@ each paragraph separately and then joins them together when it's done.  It
 will destroy any whitespace in the original text.  It breaks text into
 paragraphs by looking for whitespace after a newline.  In other respects,
 it acts like wrap().
+
+C<wrap()> compresses trailing whitespace into one newline, and C<fill()>
+deletes all trailing whitespace.
 
 Both C<wrap()> and C<fill()> return a single string.
 
