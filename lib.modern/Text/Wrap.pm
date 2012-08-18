@@ -7,7 +7,7 @@ require Exporter;
 @EXPORT = qw(wrap fill);
 @EXPORT_OK = qw($columns $break $huge);
 
-$VERSION = 2012.0815;
+$VERSION = 2012.0818;
 $SUBVERSION = 'modern';
 
 use 5.010_000;

@@ -1,7 +1,7 @@
 CHANGELOG
 lib.modern/Text/Tabs.pm
-lib.modern/Text/Tabs.pm
-lib.old/Text/Wrap.pm
+lib.modern/Text/Wrap.pm
+lib.old/Text/Tabs.pm
 lib.old/Text/Wrap.pm
 Makefile.PL
 MANIFEST
