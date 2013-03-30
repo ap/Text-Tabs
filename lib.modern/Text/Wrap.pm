@@ -295,5 +295,6 @@ many many others.
 Copyright (C) 1996-2009 David Muir Sharnoff.  
 Copyright (C) 2012 Google, Inc.
 This module may be modified, used, copied, and redistributed at your own risk.
-Please do not publicly redistribute modified versions of this code with the name
-"Text::Wrap" unless it passes the unmodified Text::Wrap test suite.
+Although allowed by the preceding license, please do not publicly
+redistribute modified versions of this code with the name "Text::Wrap"
+unless it passes the unmodified Text::Wrap test suite.
