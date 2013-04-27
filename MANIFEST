@@ -9,6 +9,7 @@ META.yml                                 Module meta-data (added by MakeMaker)
 README
 t/37000.t
 t/39548.t
+t/79766.t
 t/belg4mit.t
 t/dandv.t
 t/dnsparks.t
