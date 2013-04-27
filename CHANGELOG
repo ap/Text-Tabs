@@ -1,5 +1,7 @@
 
-Fixed bug 79766.t -- an extraneous "=" in a regex.
+Minor test suite fixes - bug 81698.
+
+Fixed bug 79766 -- an extraneous "=" in a regex.
 
 Changed the license to qualify as an "open source" license.
 
