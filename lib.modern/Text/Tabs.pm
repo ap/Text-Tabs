@@ -1,4 +1,3 @@
-
 package Text::Tabs;
 
 require Exporter;
@@ -157,7 +156,7 @@ C<local($Text::Tabs::tabstop)>.
     print unexpand $_;
   }
 
-Instead of the shell's C<expand> comand, use:
+Instead of the shell's C<expand> command, use:
 
   perl -MText::Tabs -n -e 'print expand $_'
 
