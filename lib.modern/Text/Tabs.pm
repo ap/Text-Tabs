@@ -6,7 +6,7 @@ require Exporter;
 @EXPORT = qw(expand unexpand $tabstop);
 
 use vars qw($VERSION $SUBVERSION $tabstop $debug);
-$VERSION = 2013.0522;
+$VERSION = 2013.0523;
 $SUBVERSION = 'modern';
 
 use strict;
