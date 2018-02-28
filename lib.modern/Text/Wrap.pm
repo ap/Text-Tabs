@@ -12,8 +12,6 @@ require Exporter;
 $VERSION = '2021.0717';
 $SUBVERSION = 'modern';
 
-use 5.010_000;
-
 use vars qw($VERSION $SUBVERSION $columns $break $huge $unexpand $tabstop $separator $separator2);
 use strict;
 

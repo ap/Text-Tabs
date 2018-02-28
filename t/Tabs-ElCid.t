@@ -1,11 +1,6 @@
 use strict; use warnings FATAL => 'all';
 
-BEGIN {
-	if ($] <= 5.010) {
-		print "1..0 # skip this test requires perl 5.010 or greater ($])\n";
-		exit 0;
-	}
-}
+BEGIN { eval sprintf 'sub NEED_REPEATED_DECODE () { %d }', $] lt '5.008' }
 
 use Text::Tabs;
 
@@ -103,9 +98,9 @@ sub check($$$$) {
 
 sub check_data { 
 
-    binmode(DATA, ":utf8") || die "can't binmode DATA to utf8: $!";
     local($_);
     while ( <DATA> ) {
+	$_ = pack "U0a*", $_;
 
 	my $bad = 0;
 
@@ -130,6 +125,7 @@ sub check_data {
 	$bad++ unless check($tab_count,   $., "OLD", "TABS");
 
 	$_ = expand($_);
+	$_ = pack "U0a*", $_ if NEED_REPEATED_DECODE;
 
 	$DATA[$.]{NEW}{DATA} = $_;
 
@@ -146,6 +142,7 @@ sub check_data {
 	$bad++ unless check($tab_count,   $., "NEW", "TABS");
 
 	$_ = unexpand($_);
+	$_ = pack "U0a*", $_ if NEED_REPEATED_DECODE;
 
 	if ($_ ne $DATA[$.]{OLD}{DATA}) {
 	    warn "expand/unexpand round-trip equivalency failed at line $.";

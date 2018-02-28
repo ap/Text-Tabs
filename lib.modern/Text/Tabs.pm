@@ -13,8 +13,6 @@ $SUBVERSION = 'modern';
 
 use strict;
 
-use 5.010_000;
-
 BEGIN	{
 	$tabstop = 8;
 }
@@ -73,21 +71,6 @@ sub unexpand
 
 1;
 __END__
-
-sub expand
-{
-	my (@l) = @_;
-	for $_ (@l) {
-		1 while s/(^|\n)([^\t\n]*)(\t+)/
-			$1. $2 . (" " x 
-				($tabstop * length($3)
-				- (length($2) % $tabstop)))
-			/sex;
-	}
-	return @l if wantarray;
-	return $l[0];
-}
-
 
 =head1 NAME
 

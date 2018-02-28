@@ -27,16 +27,11 @@ WriteMakefile(
 	),
 	INSTALLDIRS => ( "$]" >= 5.011 ? 'site' : 'perl' ),
 
-	PM =>	($] > 5.010 ?
+	PM =>
 		{
 			'lib.modern/Text/Tabs.pm'	=> '$(INST_LIBDIR)/Tabs.pm',
 			'lib.modern/Text/Wrap.pm'	=> '$(INST_LIBDIR)/Wrap.pm',
 		}
-		:
-		{
-			'lib.old/Text/Tabs.pm'	=> '$(INST_LIBDIR)/Tabs.pm',
-			'lib.old/Text/Wrap.pm'	=> '$(INST_LIBDIR)/Wrap.pm',
-		})
 	);
 
 sub MY::postamble { -f 'META.yml' ? return : <<'' }
