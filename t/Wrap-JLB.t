@@ -1,11 +1,6 @@
 use strict; use warnings FATAL => 'all';
 
-BEGIN {
-	if ($] <= 5.010) {
-		print "1..0 # skip this test requires perl 5.010 or greater\n";
-		exit 0;
-	}
-}
+BEGIN { eval sprintf 'sub NEED_REPEATED_DECODE () { %d }', $] lt '5.008' }
 
 use Text::Wrap;
 
@@ -16,7 +11,6 @@ require bytes;
 our $Errors = 0;
 
 $/ = q();
-binmode(DATA, ":utf8") || die "can't binmode DATA to utf8: $!";
 
 our @DATA = (
     [ # paragraph 0
@@ -84,9 +78,9 @@ sub check($$$$) {
 
 sub check_data { 
 
-    binmode(DATA, ":utf8") || die "can't binmode DATA to utf8: $!";
     local($_);
     while ( <DATA> ) {
+	$_ = pack "U0a*", $_;
 
 	my $bad = 0;
 
@@ -115,6 +109,7 @@ sub check_data {
 	my $nl = "\n" x chomp;
 
 	$_ = wrap("", "", $_) . $nl;
+	$_ = pack "U0a*", $_ if NEED_REPEATED_DECODE;
 
 	$byte_count  = bytes::length($_);
 	$char_count  = length();
