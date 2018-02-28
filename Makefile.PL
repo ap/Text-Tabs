@@ -37,3 +37,9 @@ WriteMakefile(
 		})
 	);
 
+sub MY::postamble { -f 'META.yml' ? return : <<'' }
+create_distdir : MANIFEST
+distdir        : MANIFEST
+MANIFEST :
+	( echo MANIFEST ; git ls-files ) | sort -f > MANIFEST
+
