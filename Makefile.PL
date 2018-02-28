@@ -1,6 +1,8 @@
 
 use ExtUtils::MakeMaker;
 
+my $u = 'github.com/ap/Text-Tabs';
+
 WriteMakefile( 
 	'NAME'		=> 'Text-Wrap',
 	'DISTNAME'	  => 'Text-Tabs+Wrap',
@@ -11,8 +13,10 @@ WriteMakefile(
 			AUTHOR		=> 'David Muir Sharnoff <muir@idiom.org>',
 			META_MERGE	=> {
 				resources  => {
-					repository => 'http://github.com/muir/Text-Tabs-Wrap',
-				}
+					repository => { type => 'git', url => "git://$u.git", web => "https://$u" },
+					bugtracker => { web => "https://$u/issues" },
+				},
+				'meta-spec' => { version => 2 },
 			}
 		) 
 		: 
@@ -31,6 +35,5 @@ WriteMakefile(
 			'lib.old/Text/Tabs.pm'	=> '$(INST_LIBDIR)/Text/Tabs.pm',
 			'lib.old/Text/Wrap.pm'	=> '$(INST_LIBDIR)/Text/Wrap.pm',
 		})
-
 	);
 
