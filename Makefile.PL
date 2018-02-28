@@ -1,3 +1,4 @@
+use 5.006; use strict; use warnings;
 
 use ExtUtils::MakeMaker;
 
@@ -7,10 +8,11 @@ WriteMakefile(
 	'NAME'		=> 'Text-Wrap',
 	'DISTNAME'	  => 'Text-Tabs+Wrap',
 	'VERSION_FROM' => 'lib.modern/Text/Wrap.pm',
-	($] >= 5.005 ? 
-		(
 			ABSTRACT	=> 'Expand tabs and do simple line wrapping',
 			AUTHOR		=> 'David Muir Sharnoff <muir@idiom.org>',
+	( eval { ExtUtils::MakeMaker->VERSION(6.48) } ?
+		(
+			MIN_PERL_VERSION => '5.006',
 			META_MERGE	=> {
 				resources  => {
 					repository => { type => 'git', url => "git://$u.git", web => "https://$u" },
@@ -22,7 +24,6 @@ WriteMakefile(
 		: 
 		()
 	),
-	'dist' => { COMPRESS=>"gzip", SUFFIX=>"gz" },
 	'INSTALLDIRS'	=> 'perl',
 
 	PM =>	($] > 5.010 ?
