@@ -31,8 +31,6 @@ my $CHUNK = qr/\X/;
 
 sub _xlen(_) { scalar(() = $_[0] =~ /$CHUNK/g) }
 
-sub _xpos(_) { _xlen( substr( $_[0], 0, pos($_[0]) ) ) }
-
 use Text::Tabs qw(expand unexpand);
 
 sub wrap
