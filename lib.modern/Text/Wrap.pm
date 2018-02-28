@@ -27,9 +27,7 @@ BEGIN	{
 	$separator2 = undef;
 }
 
-my $CHUNK = qr/\X/;
-
-sub _xlen(_) { scalar(() = $_[0] =~ /$CHUNK/g) }
+sub _xlen { () = $_[0] =~ /\X/g }
 
 use Text::Tabs qw(expand unexpand);
 

@@ -19,9 +19,7 @@ BEGIN	{
 	$tabstop = 8;
 }
 
-my $CHUNK = qr/\X/;
-
-sub _xlen (_) { scalar(() = $_[0] =~ /$CHUNK/g) } 
+sub _xlen { () = $_[0] =~ /\X/g }
 
 sub expand {
 	my @l;
@@ -56,7 +54,7 @@ sub unexpand
 		@lines = split("\n", $x, -1);
 		for $line (@lines) {
 			$line = expand($line);
-			@e = split(/(${CHUNK}{$tabstop})/,$line,-1);
+			@e = split(/(\X{$tabstop})/,$line,-1);
 			$lastbit = pop(@e);
 			$lastbit = '' 
 				unless defined $lastbit;
