@@ -5,9 +5,8 @@ use ExtUtils::MakeMaker;
 my $u = 'github.com/ap/Text-Tabs';
 
 WriteMakefile( 
-	'NAME'		=> 'Text::Wrap',
-	'DISTNAME'	  => 'Text-Tabs+Wrap',
-	'VERSION_FROM' => 'lib.modern/Text/Wrap.pm',
+	NAME         => 'Text::Tabs',
+	VERSION_FROM => 'lib/Text/Tabs.pm',
 			ABSTRACT	=> 'Expand tabs and do simple line wrapping',
 			AUTHOR		=> 'David Muir Sharnoff <muir@idiom.org>',
 	( eval { ExtUtils::MakeMaker->VERSION(6.48) } ?
@@ -26,17 +25,6 @@ WriteMakefile(
 		()
 	),
 	INSTALLDIRS => ( "$]" >= 5.011 ? 'site' : 'perl' ),
-
-	MAN3PODS =>
-		{
-			'lib.modern/Text/Tabs.pm'	=> '$(INST_MAN3DIR)/Text::Tabs.$(MAN3EXT)',
-			'lib.modern/Text/Wrap.pm'	=> '$(INST_MAN3DIR)/Text::Wrap.$(MAN3EXT)',
-		},
-	PM =>
-		{
-			'lib.modern/Text/Tabs.pm'	=> '$(INST_LIBDIR)/Tabs.pm',
-			'lib.modern/Text/Wrap.pm'	=> '$(INST_LIBDIR)/Wrap.pm',
-		}
 	);
 
 sub MY::postamble { -f 'META.yml' ? return : <<'' }
