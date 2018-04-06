@@ -19,7 +19,7 @@ use strict;
 
 BEGIN	{
 	$columns = 76;  # <= screen width
-	$break = '(?=\s)\X';
+	$break = '(?=\s)(?:\r\n|\PM\pM*)';
 	$huge = 'wrap'; # alternatively: 'die' or 'overflow'
 	$unexpand = 1;
 	$tabstop = 8;
@@ -27,7 +27,7 @@ BEGIN	{
 	$separator2 = undef;
 }
 
-sub _xlen { () = $_[0] =~ /\X/g }
+sub _xlen { () = $_[0] =~ /\PM/g }
 
 use Text::Tabs qw(expand unexpand);
 
@@ -56,17 +56,17 @@ sub wrap
 
 	pos($t) = 0;
 	while ($t !~ /\G(?:$break)*\Z/gc) {
-		if ($t =~ /\G((?:(?=[^\n])\X){0,$ll})($break|\n+|\z)/xmgc) {
+		if ($t =~ /\G((?:(?!\n)\PM\pM*){0,$ll})($break|\n+|\z)/xmgc) {
 			$r .= $unexpand 
 				? unexpand($nl . $lead . $1)
 				: $nl . $lead . $1;
 			$remainder = $2;
-		} elsif ($huge eq 'wrap' && $t =~ /\G((?:(?=[^\n])\X){$ll})/gc) {
+		} elsif ($huge eq 'wrap' && $t =~ /\G((?:(?!\n)\PM\pM*){$ll})/gc) {
 			$r .= $unexpand 
 				? unexpand($nl . $lead . $1)
 				: $nl . $lead . $1;
 			$remainder = defined($separator2) ? $separator2 : $separator;
-		} elsif ($huge eq 'overflow' && $t =~ /\G((?:(?=[^\n])\X)*?)($break|\n+|\z)/xmgc) {
+		} elsif ($huge eq 'overflow' && $t =~ /\G((?:(?!\n)\PM\pM*)*?)($break|\n+|\z)/xmgc) {
 			$r .= $unexpand 
 				? unexpand($nl . $lead . $1)
 				: $nl . $lead . $1;

@@ -19,21 +19,21 @@ BEGIN	{
 	$tabstop = 8;
 }
 
-sub _xlen { () = $_[0] =~ /\X/g }
-
 sub expand {
 	my @l;
 	my $pad;
 	for ( @_ ) {
 		my $s = '';
 		for (split(/^/m, $_, -1)) {
-			my $offs = 0;
-			s{\t}{
-				$pad = $tabstop - (_xlen(${^PREMATCH}) + $offs) % $tabstop;
-				$offs += $pad - 1;
-				" " x $pad;
-			}peg;
-			$s .= $_;
+			my $offs;
+			for (split(/\t/, $_, -1)) {
+				if (defined $offs) {
+					$pad = $tabstop - $offs % $tabstop;
+					$s .= " " x $pad;
+				}
+				$s .= $_;
+				$offs = () = /\PM/g;
+			}
 		}
 		push(@l, $s);
 	}
@@ -54,7 +54,7 @@ sub unexpand
 		@lines = split("\n", $x, -1);
 		for $line (@lines) {
 			$line = expand($line);
-			@e = split(/(\X{$tabstop})/,$line,-1);
+			@e = split(/((?:\PM\pM*){$tabstop})/,$line,-1);
 			$lastbit = pop(@e);
 			$lastbit = '' 
 				unless defined $lastbit;
