@@ -119,8 +119,8 @@ sub check_data {
 
 	$byte_count  = bytes::length($_);
 	$char_count  = length();
-	$chunk_count = () = /\X/g;
-	$word_count  = () = /(?:(?=\pL)\X)+/g;
+	$chunk_count = () = /\PM/g;
+	$word_count  = () = /(?:\pL\pM*)+/g;
 	$tab_count   = y/\t//;
 
 	$bad++ unless check($byte_count,  $., "OLD", "BYTES");
@@ -135,8 +135,8 @@ sub check_data {
 
 	$byte_count  = bytes::length($_);
 	$char_count  = length();
-	$chunk_count = () = /\X/g;
-	$word_count  = () = /(?:(?=\pL)\X)+/g;
+	$chunk_count = () = /\PM/g;
+	$word_count  = () = /(?:\pL\pM*)+/g;
 	$tab_count   = y/\t//;
 
 	$bad++ unless check($byte_count,  $., "NEW", "BYTES");
