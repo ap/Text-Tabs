@@ -1,6 +1,6 @@
-no strict; use warnings;
+use strict; use warnings;
 
-@tests = (split(/\nEND\n/s, <<DONE));
+my @tests = (split(/\nEND\n/s, <<DONE));
 TEST1
 Cyberdog Information
 
@@ -54,7 +54,7 @@ print "1..$numtests\n";
 
 use Text::Wrap;
 
-$tn = 1;
+my $tn = 1;
 while (@tests) {
 	my $in = shift(@tests);
 	my $out = shift(@tests);

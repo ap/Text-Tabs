@@ -1,6 +1,6 @@
-no strict; use warnings;
+use strict; use warnings;
 
-@tests = (split(/\nEND\n/s, <<DONE));
+my @tests = (split(/\nEND\n/s, <<DONE));
 TEST 1 u
                 x
 END
@@ -91,13 +91,14 @@ print "1..$numtests\n";
 
 use Text::Tabs;
 
-$tn = 1;
+my $tn = 1;
 while (@tests) {
 	my $in = shift(@tests);
 	my $out = shift(@tests);
 
 	$in =~ s/^TEST\s*(\d+)?\s*(\S+)?\n//;
 
+	my ($f, $fn);
 	if ($2 eq 'e') {
 		$f = \&expand;
 		$fn = 'expand';

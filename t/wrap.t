@@ -1,6 +1,6 @@
-no strict; no warnings;
+use strict; use warnings;
 
-@tests = (split(/\nEND\n/s, <<'DONE'));
+my @tests = (split(/\nEND\n/s, <<'DONE'));
 TEST1
 This 
 is
@@ -132,9 +132,9 @@ print "1..", 2 +@tests, "\n";
 
 use Text::Wrap;
 
-$tn = 1;
+my $tn = 1;
 
-@st = @tests;
+my @st = @tests;
 while (@st) {
 	my $in = shift(@st);
 	my $out = shift(@st);

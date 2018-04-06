@@ -1,4 +1,4 @@
-use strict; no warnings;
+use strict; use warnings;
 
 use Text::Wrap;
 
