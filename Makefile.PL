@@ -8,7 +8,10 @@ WriteMakefile(
 	NAME         => 'Text::Tabs',
 	VERSION_FROM => 'lib/Text/Tabs.pm',
 			ABSTRACT	=> 'Expand tabs and do simple line wrapping',
-			AUTHOR		=> 'David Muir Sharnoff <muir@idiom.org>',
+			AUTHOR		=> (
+				map { eval { ExtUtils::MakeMaker->VERSION(6.48) } ? $_ : join '; ', @$_ }
+				[ 'David Muir Sharnoff <muir@idiom.org>', 'Aristotle Pagaltzis <pagaltzis@gmx.de>' ],
+			),
 	( eval { ExtUtils::MakeMaker->VERSION(6.48) } ?
 		(
 			MIN_PERL_VERSION => '5.006',

@@ -13,54 +13,30 @@ our $tabstop = 8;
 
 sub expand {
 	my @l;
-	my $pad;
 	for ( @_ ) {
-		my $s = '';
-		for (split(/^/m, $_, -1)) {
-			my $offs;
-			for (split(/\t/, $_, -1)) {
-				if (defined $offs) {
-					$pad = $tabstop - $offs % $tabstop;
-					$s .= " " x $pad;
-				}
-				$s .= $_;
-				$offs = () = /\PM/g;
-			}
+		push @l, '';
+		while ( /\G(.*?)(^|\z|\t)/smg ) {
+			$l[-1] .= $1;
+			$l[-1] .= ' ' x ( $tabstop - (() = "$1" =~ /\PM/g) % $tabstop ) if $2;
 		}
-		push(@l, $s);
 	}
-	return @l if wantarray;
-	return $l[0];
+	wantarray ? @l : $l[0];
 }
 
 sub unexpand
 {
-	my (@l) = @_;
-	my @e;
-	my $x;
-	my $line;
-	my @lines;
-	my $lastbit;
-	my $ts_as_space = " " x $tabstop;
-	for $x (@l) {
-		@lines = split("\n", $x, -1);
-		for $line (@lines) {
-			$line = expand($line);
-			@e = split(/((?:\PM\pM*){$tabstop})/,$line,-1);
-			$lastbit = pop(@e);
-			$lastbit = '' 
-				unless defined $lastbit;
-			$lastbit = "\t"
-				if $lastbit eq $ts_as_space;
-			for $_ (@e) {
-				s/  +$/\t/;
+	my @l = &expand;
+	for ( @l ) {
+		s[((?:(?![\r\n])\PM\pM*){$tabstop})]{
+			my $c = $1, my $chr;
+			if ( '  ' eq substr $c, -2 ) {
+				do { $chr = chop $c } while ' ' eq $chr;
+				$c . $chr . "\t";
 			}
-			$line = join('',@e, $lastbit);
-		}
-		$x = join("\n", @lines);
+			else { $1 }
+		}eg;
 	}
-	return @l if wantarray;
-	return $l[0];
+	wantarray ? @l : $l[0];
 }
 
 1;
@@ -69,82 +45,70 @@ __END__
 
 =head1 NAME
 
-Text::Tabs - expand and unexpand tabs like unix expand(1) and unexpand(1)
+Text::Tabs - convert between tabs and multiple spaces
 
 =head1 SYNOPSIS
 
-  use Text::Tabs;
-
-  $tabstop = 4;  # default = 8
-  @lines_without_tabs = expand(@lines_with_tabs);
-  @lines_with_tabs = unexpand(@lines_without_tabs);
+ perl -CS -MText::Tabs -pe '$_ = expand $_'   -- stuff.txt in-utf8.txt
+ perl -CS -MText::Tabs -pe '$_ = unexpand $_' -- stuff.txt in-utf8.txt
 
 =head1 DESCRIPTION
 
-Text::Tabs does most of what the unix utilities expand(1) and unexpand(1) 
-do.  Given a line with tabs in it, C<expand> replaces those tabs with
-the appropriate number of spaces.  Given a line with or without tabs in
-it, C<unexpand> adds tabs when it can save bytes by doing so, 
-like the C<unexpand -a> command.  
-
-Unlike the old unix utilities, this module correctly accounts for
-any Unicode combining characters (such as diacriticals) that may occur
-in each line for both expansion and unexpansion.  These are overstrike
-characters that do not increment the logical position.  Make sure
-you have the appropriate Unicode settings enabled.
+This module provides functions for converting tabs to multiple spaces and vice
+versa, named after the corresponding Unix utilities, expand(1) and unexpand(1).
+It includes basic Unicode support by ignoring combining marks when calculating
+the column position.
 
 =head1 INTERFACE
 
-The following are exported:
-
-=pod
+All symbols are exported by default.
 
 =head2 expand
 
+Takes a list of strings and converts each of them by
+replacing tabs with spaces.
+
+Returns the list of converted strings in list context,
+or just the first string in scalar context.
+
 =head2 unexpand
+
+Takes a list of strings and converts each of them by
+substituting a tab for every sequence of multiple spaces that reaches a tabstop.
+
+Returns the list of converted strings in list context,
+or just the first string in scalar context.
 
 =head2 $tabstop
 
-The C<$tabstop> variable controls how many column positions apart each
-tabstop is.  The default is 8.
+The number of character columns per table column (default: 8).
 
-Please note that C<local($tabstop)> doesn't do the right thing and if you want
-to use C<local> to override C<$tabstop>, you need to use
-C<local($Text::Tabs::tabstop)>.
+B<Caveat coder>:
+because of how exporting works (by putting references in glob slots)
+and how L<local|perlfunc/local> works (by shadowing a slot in a container (e.g. a glob)),
+you will not get the result you expect from C<local $tabstop>:
+it will affect the C<*tabstop> glob in your own package but not the one in C<Text::Tabs>,
+so C<expand>/C<unexpand> will not see the overriden value.
+Instead, you will have to use C<local $Text::Tabs::tabstop>. Sorry.
 
 =back
 
-=head1 EXAMPLE
-
-  #!perl
-  # unexpand -a
-  use Text::Tabs;
-
-  while (<>) {
-    print unexpand $_;
-  }
-
-Instead of the shell's C<expand> command, use:
-
-  perl -MText::Tabs -n -e 'print expand $_'
-
-Instead of the shell's C<unexpand -a> command, use:
-
-  perl -MText::Tabs -n -e 'print unexpand $_'
-
 =head1 BUGS AND LIMITATIONS
 
-Text::Tabs handles only tabs (C<"\t">) and combining characters (C</\pM/>).  It doesn't
-count backwards for backspaces (C<"\t">), omit other non-printing control characters (C</\pC/>),
-or otherwise deal with any other zero-, half-, and full-width characters.
+Unlike the Unix utilities, backspaces do not decrement the column position.
+
+Unicode support is limited:
+no ignoring of various non-printing Unicode characters (L<C<\pC>|perluniprops>)
+and nothing special is done for zero-/half-/full-width characters.
+
+Exporting C<$tabstop> was a now-unfixable mistake.
+
+=head1 AUTHOR
+
+Aristotle Pagaltzis E<lt>pagaltzis@gmx.deE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 1996-2002,2005,2006 David Muir Sharnoff.  
-Copyright (C) 2005 Aristotle Pagaltzis 
-Copyright (C) 2012-2013 Google, Inc.
+This software is copyright (c) 2018 by Aristotle Pagaltzis.
 
-This module may be modified, used, copied, and redistributed at your own risk.
-Although allowed by the preceding license, please do not publicly
-redistribute modified versions of this code with the name "Text::Tabs"
-unless it passes the unmodified Text::Tabs test suite.
+This is free software; you can redistribute it and/or modify it under the same terms as the Perl 5 programming language system itself.
