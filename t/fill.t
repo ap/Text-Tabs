@@ -1,9 +1,9 @@
-no strict; use warnings;
+use strict; use warnings;
 
 BEGIN { require './t/lib/ok.pl' }
 use Text::Wrap;
 
-@tests = (split(/\nEND\n/s, <<DONE));
+my @tests = (split(/\nEND\n/s, <<DONE));
 TEST1
 Cyberdog Information
 

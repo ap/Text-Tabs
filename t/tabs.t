@@ -1,9 +1,9 @@
-no strict; use warnings;
+use strict; use warnings;
 
 BEGIN { require './t/lib/ok.pl' }
 use Text::Tabs;
 
-@tests = (split(/\nEND\n/s, <<DONE));
+my @tests = (split(/\nEND\n/s, <<DONE));
 TEST 1 u
                 x
 END
@@ -97,11 +97,7 @@ while (@tests) {
 
 	$in =~ s/^TEST\s*(\d+)?\s*(\S+)?\n//;
 
-	if ($2 eq 'e') {
-		$f = \&expand;
-	} else {
-		$f = \&unexpand;
-	}
+	my $f = $2 eq 'e' ? \&expand : \&unexpand;
 
 	my $back = &$f($in);
 

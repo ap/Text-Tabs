@@ -1,20 +1,15 @@
-no strict; no warnings;
+use strict; use warnings;
 
 package Text::Tabs;
 
 BEGIN { require Exporter; *import = \&Exporter::import }
 
-@EXPORT = qw(expand unexpand $tabstop);
+our @EXPORT = qw( expand unexpand $tabstop );
 
-use vars qw($VERSION $SUBVERSION $tabstop);
-$VERSION = '2021.0717';
-$SUBVERSION = 'modern'; # back-compat vestige
+our $VERSION = '2021.0717';
+our $SUBVERSION = 'modern'; # back-compat vestige
 
-use strict;
-
-BEGIN	{
-	$tabstop = 8;
-}
+our $tabstop = 8;
 
 sub expand {
 	my @l;

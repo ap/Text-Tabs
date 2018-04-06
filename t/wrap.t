@@ -1,9 +1,9 @@
-no strict; no warnings;
+use strict; use warnings;
 
 BEGIN { require './t/lib/ok.pl' }
 use Text::Wrap;
 
-@tests = (split(/\nEND\n/s, <<'DONE'));
+my @tests = (split(/\nEND\n/s, <<'DONE'));
 TEST1
 This 
 is
@@ -130,6 +130,8 @@ DONE
 
 
 print "1..", 2 +@tests, "\n";
+
+my @st;
 
 @st = @tests;
 while (@st) {

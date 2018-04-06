@@ -1,4 +1,4 @@
-no strict; no warnings;
+use strict; use warnings;
 
 package Text::Wrap;
 
@@ -6,24 +6,19 @@ use warnings::register;
 
 BEGIN { require Exporter; *import = \&Exporter::import }
 
-@EXPORT = qw(wrap fill);
-@EXPORT_OK = qw($columns $break $huge);
+our @EXPORT = qw( wrap fill );
+our @EXPORT_OK = qw( $columns $break $huge );
 
-$VERSION = '2021.0717';
-$SUBVERSION = 'modern'; # back-compat vestige
+our $VERSION = '2021.0717';
+our $SUBVERSION = 'modern'; # back-compat vestige
 
-use vars qw($VERSION $SUBVERSION $columns $break $huge $unexpand $tabstop $separator $separator2);
-use strict;
-
-BEGIN	{
-	$columns = 76;  # <= screen width
-	$break = '(?=\s)(?:\r\n|\PM\pM*)';
-	$huge = 'wrap'; # alternatively: 'die' or 'overflow'
-	$unexpand = 1;
-	$tabstop = 8;
-	$separator = "\n";
-	$separator2 = undef;
-}
+our $columns = 76;  # <= screen width
+our $break = '(?=\s)(?:\r\n|\PM\pM*)';
+our $huge = 'wrap'; # alternatively: 'die' or 'overflow'
+our $unexpand = 1;
+our $tabstop = 8;
+our $separator = "\n";
+our $separator2 = undef;
 
 sub _xlen { () = $_[0] =~ /\PM/g }
 

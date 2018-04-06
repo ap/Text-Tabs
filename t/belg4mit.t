@@ -1,4 +1,4 @@
-use strict; no warnings;
+use strict; use warnings;
 
 BEGIN { require './t/lib/ok.pl' }
 use Text::Wrap;
