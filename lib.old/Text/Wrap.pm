@@ -1,3 +1,5 @@
+no strict; no warnings;
+
 package Text::Wrap;
 
 use warnings::register;
