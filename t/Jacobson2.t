@@ -1,6 +1,7 @@
 no strict; no warnings;
 
-use Text::Wrap qw(wrap $columns $huge $break);
+BEGIN { require './t/lib/ok.pl' }
+use Text::Wrap;
 
 print "1..1\n";
 
@@ -17,6 +18,6 @@ if ($@) {
 	$e =~ s/^/# /gm;
 	print $e;
 }
-print $@ ? "not ok 1\n" : "ok 1\n";
+ok( !$@ );
 
 

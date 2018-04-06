@@ -1,5 +1,8 @@
 no strict; use warnings;
 
+BEGIN { require './t/lib/ok.pl' }
+use Text::Wrap;
+
 @tests = (split(/\nEND\n/s, <<DONE));
 TEST1
 Cyberdog Information
@@ -50,9 +53,6 @@ DONE
 my $numtests = scalar(@tests) / 2;
 print "1..$numtests\n";
 
-use Text::Wrap;
-
-$tn = 1;
 while (@tests) {
 	my $in = shift(@tests);
 	my $out = shift(@tests);
@@ -61,10 +61,5 @@ while (@tests) {
 
 	my $back = fill('    ', ' ', $in);
 
-	if ($back eq $out) {
-		print "ok $tn\n";
-	} else {
-		print "not ok $tn\n";
-	}
-	$tn++;
+	ok( $back eq $out );
 }

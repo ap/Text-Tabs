@@ -14,6 +14,7 @@ WriteMakefile(
 		(
 			MIN_PERL_VERSION => '5.006',
 			META_MERGE	=> {
+				dynamic_config => 0,
 				resources  => {
 					repository => { type => 'git', url => "git://$u.git", web => "https://$u" },
 					bugtracker => { web => "https://$u/issues" },

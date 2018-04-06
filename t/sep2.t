@@ -1,5 +1,8 @@
 no strict; no warnings;
 
+BEGIN { require './t/lib/ok.pl' }
+use Text::Wrap;
+
 @tests = (split(/\nEND\n/s, <<DONE));
 TEST1
 This 
@@ -100,10 +103,7 @@ DONE
 
 print "1..", 1 +@tests, "\n";
 
-use Text::Wrap;
 $Text::Wrap::separator2 = '=';
-
-$tn = 1;
 
 @st = @tests;
 while (@st) {
@@ -114,12 +114,7 @@ while (@st) {
 
 	my $back = wrap('   ', ' ', $in);
 
-	if ($back eq $out) {
-		print "ok $tn\n";
-	} else {
-		print "not ok $tn\n";
-	}
-	$tn++;
+	ok( $back eq $out );
 
 }
 
@@ -135,18 +130,12 @@ while(@st) {
 	
 	my $back = wrap('   ', ' ', @in);
 
-	if ($back eq $out) {
-		print "ok $tn\n";
-	} else {
-		print "not ok $tn\n";
-	}
-	$tn++;
+	ok( $back eq $out );
 }
 
 $Text::Wrap::huge = 'overflow';
 
 my $tw = 'This_is_a_word_that_is_too_long_to_wrap_we_want_to_make_sure_that_the_program_does_not_crash_and_burn';
 my $w = wrap('zzz','yyy',$tw);
-print (($w eq "zzz$tw") ? "ok $tn\n" : "not ok $tn");
-$tn++;
+ok( $w eq "zzz$tw" );
 
