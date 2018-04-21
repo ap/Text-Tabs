@@ -24,7 +24,7 @@ WriteMakefile(
 		: 
 		()
 	),
-	'INSTALLDIRS'	=> 'perl',
+	INSTALLDIRS => ( "$]" >= 5.011 ? 'site' : 'perl' ),
 
 	PM =>	($] > 5.010 ?
 		{
