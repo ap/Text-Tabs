@@ -93,17 +93,17 @@ in each line for both expansion and unexpansion.  These are overstrike
 characters that do not increment the logical position.  Make sure
 you have the appropriate Unicode settings enabled.
 
-=head1 EXPORTS
+=head1 INTERFACE
 
 The following are exported:
 
-=over 4
+=pod
 
-=item expand
+=head2 expand
 
-=item unexpand
+=head2 unexpand
 
-=item $tabstop
+=head2 $tabstop
 
 The C<$tabstop> variable controls how many column positions apart each
 tabstop is.  The default is 8.
@@ -132,17 +132,18 @@ Instead of the shell's C<unexpand -a> command, use:
 
   perl -MText::Tabs -n -e 'print unexpand $_'
 
-=head1 BUGS
+=head1 BUGS AND LIMITATIONS
 
 Text::Tabs handles only tabs (C<"\t">) and combining characters (C</\pM/>).  It doesn't
 count backwards for backspaces (C<"\t">), omit other non-printing control characters (C</\pC/>),
 or otherwise deal with any other zero-, half-, and full-width characters.
 
-=head1 LICENSE
+=head1 COPYRIGHT AND LICENSE
 
 Copyright (C) 1996-2002,2005,2006 David Muir Sharnoff.  
 Copyright (C) 2005 Aristotle Pagaltzis 
 Copyright (C) 2012-2013 Google, Inc.
+
 This module may be modified, used, copied, and redistributed at your own risk.
 Although allowed by the preceding license, please do not publicly
 redistribute modified versions of this code with the name "Text::Tabs"
