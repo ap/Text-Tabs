@@ -1,0 +1,85 @@
+Revision history for Text-Tabs
+
+2021.0717 Sat 17 Jul 2021
+ - Packaging fixes
+ - Explicitly declared strictures and warnings everywhere,
+   for new -Dusedefaultstrict perls
+
+2013.0523 Thu 23 May 2013
+ - MakeMaker NAME changed to Text-Wrap
+
+2013.0522 Wed 22 May 2013
+ - No functional changes
+ - Documentation typo fixes
+
+2013.0426 Fri 26 Apr 2013
+ - License change to qualify as "open source"
+ [FIXES]
+ - Another "this shouldn't happen" [cpan #79766]
+
+2012.0818 Sat 18 Aug 2012
+ - Packaging fix
+
+2012.0815 Wed 15 Aug 2012
+ - Bifurcated codebase for support of older perls
+ [INCOMPATIBLE CHANGE]
+ - Unicode support for perls that have \X
+
+2009.0305 Thu 05 Mar 2009
+ - Automatic increment of $columns when unavoidable
+
+2006.1117 Fri 17 Nov 2006
+ - Switch Text::Wrap from warn to warnings::warnif
+
+2006.0711 Tue 11 Jul 2006
+ [FIXES]
+ - Another "this shouldn't happen"
+
+2006.0705 Wed 05 Jul 2006
+ [FIXES]
+ - Wrapping long words under $break [perl #34902]
+ - Wrapping under $columns=1
+
+2005.0824 Wed 24 Aug 2005
+ - Separate line ending configuration for computed linebreaks
+ [FIXES]
+ - Wrapping long words [perl #17141]
+
+2001.0929 Sat 29 Sep 2001
+ - Retention of tainting on input strings in output string
+ - Configurable line ending in Text::Wrap
+ [INCOMPATIBLE CHANGE]
+ - No automatic unexpand of Text::Wrap output
+
+2001.0131 Tue 30 Jan 2001
+ - New setting for $huge to split overlong words
+ [FIXES]
+ - No extraneous whitespace when passed multiple strings
+
+98.112902 Sun 29 Nov 1998
+ - Merge of Text::Fill into Text::Wrap
+
+98.112801 Sat 28 Nov 1998
+ - New configuration variable $huge in Text::Wrap
+ - New module Text::Fill
+
+97.011701 Fri 17 Jan 1997
+ [INCOMPATIBLE CHANGE]
+ - Overflow when wrapping overlong words is now silent
+
+96.121201 Thu 12 Dec 1996
+ [FIXES]
+ - @l[0] --> $l[0]
+
+96.090101 Sun 01 Sep 1996
+ - Removal of Text::Wrap::fill
+
+96.082801 Wed 28 Aug 1996
+ - New Text::Wrap::fill for wrapping multiple paragraphs
+
+96.051501 Wed 15 May 1996
+ [FIXES]
+ - No loss of trailing empty lines in unexpand
+
+96.050901 Thu 09 May 1996
+ - Initial release
