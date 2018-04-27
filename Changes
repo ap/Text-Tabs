@@ -1,14 +1,12 @@
+Release history for Text-Tabs
 
-= 2023/05/11
-
+2023.0511 Wed 10 May 2023
 Fixed bugtracker link
 
-= 2023/05/10
-
+2023.0510 Tue 09 May 2023
 Fix for a warning introduced in Text::Wrap in post-5.6 perls
 
-= 2023/05/09
-
+2023.0509 Tue 09 May 2023
 Minimum Perl version raised to 5.6.1 to reflect the existing situation
 
 Support for Perl 5.6 is now fully correct
@@ -22,69 +20,56 @@ Thanks for the report to Mario Paumann
 Correct handling of non-breaking spaces when wrapping. (RT #95823)
 Requested by Kent Fredric, who is dearly missed
 
-= 2021/08/14
-
+2021.0814 Sat 14 Aug 2021
 Missing changelog entry
 
-= 2021/08/13
-
+2021.0813 Fri 13 Aug 2021
 No warnings on undef inputs (broken in 2021.0726)
 
-= 2021/08/04
-
+2021.0804 Wed 04 Aug 2021
 Removal of reference benchmark from test suite (moved to xt/bench)
 
-= 2021/07/26
-
+2021.0726 Mon 26 Jul 2021
 Unicode support on all supported versions of Perl
 
 Full strict and warnings cleanliness
 
 Packaging cleanups
 
-= 2021/07/17
-
+2021.0717 Sat 17 Jul 2021
 Makefile.PL fixes
 
 Explicitly declared strictures and warnings everywhere
 (to support -Dusedefaultstrict perls)
 
-= 2013/05/23
-
+2013.0523 Thu 23 May 2013
 Change module 'NAME'
 
-= 2013/05/22
-
+2013.0522 Thu 23 May 2013
 Typos
 
-= 2013/04/26
-
+2013.0426 Sat 27 Apr 2013
 Minor test suite fixes - bug 81698.
 
 Fixed bug 79766 -- an extraneous "=" in a regex.
 
 Changed the license to qualify as an "open source" license.
 
-= 2012/08/18
-
+2012.0818 Sat 18 Aug 2012
 Packaging fix.
 
 Minor documentation fixes.
 
-= 2012/08/15
-
+2012.0815 Sat 18 Aug 2012
 Minor fixes to test suites.
 
 Added back versions to support old versions of perl.
-
-= 2009/04/17
 
 Added support for Unicode combining characters to both 
 Text::Tabs and Text::Wrap, plus a new test suite for each
 of these new functionalities.  --tchrist
 
-= 2009/03/05
-
+2009.0305 Fri 06 Mar 2009
 Test improvements from Dave Mitchel sent back in 2005...
 
 Added code to increase $columns if it's not big enough to accommodate
@@ -95,18 +80,15 @@ Minor documentation fixes from David Landgren <david at landgren.net>.
 Use warnings::warnif instead of just warn for columns < 2.  Appled per
 request of Rafael Garcia-Suarez <rgarciasuarez at gmail.com>.
 
-= 2006/11/17
-
+2006.1117 Fri 17 Nov 2006
 Text::Tabs can handle newlines now so the BUGS section has been removed
 per request from Aristotle Pagaltzis.
 
-= 2006/07/11
-
+2006.0711 Tue 11 Jul 2006
 Further bomb-proofing to pass more tests: Dan Jacobson <jidanni at 
 jidanni dot org> found another way to generate a "this shouldn't happen".
 
-= 2006/07/05 
-
+2006.0705 Thu 06 Jul 2006
 Made documentation and code changes to address perlbug:
 https://rt.perl.org/rt3/Ticket/Display.html?id=30229
 
@@ -122,8 +104,7 @@ belg4mit at MIT dot EDU reported that $columns==1 die'd.  No longer.
 
 Added tests for each bug report.
 
-= 2005/08/24
-
+2005.0824 Wed 24 Aug 2005
 Added $separator2 and tests for $separator and $separator2
 
 Aristotle Pagaltzis <pagaltzis at gmx.de> contributed a new version of
@@ -135,8 +116,7 @@ fixed a bug in wrap.
 Matthew Durante <matthew_durante at hotmail.com> and 
 Don Buchholz <don at truedisk.com> sent in a doc patches.
 
-= 2001/09/29
-
+2001.0929 Sun 30 Sep 2001
 Philip Newton <Philip.Newton at gmx.net> sent in a clean patch that
 added support for defining words differently; that prevents 
 Text::Wrap from untainting strings; and that fixes a documentation
@@ -154,8 +134,7 @@ Way back in '97, Joel Earl <jrearl at VNET.IBM.COM> asked that
 it be possible to use a line separator other than \n when
 adding new lines.  There is now support for that.
 
-= 2001/01/30
-
+2001.0131 Wed 01 Feb 2001
 Bugfix by Michael G Schwern <schwern at pobox.com>: don't add extra
 whitespace when working one an array of input (as opposed to a 
 single string).
@@ -168,13 +147,11 @@ overflow the line.  Feature requested by James Hoagland
 
 Documentation changes from Rich Bowen <Rich at cre8tivegroup.com>.
 
-= 1998/11/29
-
+98.112902 Sun 29 Nov 1998
 Combined Fill.pm into Wrap.pm.  It appears there are versions of
 Wrap.pm with fill in them.
 
-= 1998/11/28
-
+98.112801 Sat 28 Nov 1998
 Over the last couple of years, many people sent in various
 rewrites of Text::Wrap.  I should have done something about
 updating it long ago.  If someone wants to take it over from
@@ -209,3 +186,14 @@ sitting there unpublished.  There was a note that Tim Pierce
 had a faster version, but a search on CPAN failed to turn it
 up.  Text::Fill is now available.
 
+97.011701 Sat 18 Jan 1997
+
+96.121201 Fri 13 Dec 1996
+
+96.090101 Mon 02 Sep 1996
+
+96.082801 Thu 29 Aug 1996
+
+96.051501 Thu 16 May 1996
+
+96.050901 Tue 26 Aug 1997
