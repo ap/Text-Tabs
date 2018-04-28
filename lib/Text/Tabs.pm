@@ -11,13 +11,23 @@ our $SUBVERSION = 'modern'; # back-compat vestige
 
 our $tabstop = 8;
 
+BEGIN { eval sprintf 'sub HAS_UTF8_FLAG () { %d }', !!UNIVERSAL::can( 'utf8', 'is_utf8' ) }
+
 sub expand {
 	my @l;
 	for ( wantarray ? @_ : $_[0] ) {
 		push @l, '';
-		while ( /\G(.*?)(^|\z|\t)/smg ) {
-			$l[-1] .= $1;
-			$l[-1] .= ' ' x ( $tabstop - (() = "$1" =~ /\PM/g) % $tabstop ) if $2;
+		if ( HAS_UTF8_FLAG and not utf8::is_utf8 $_ ) {
+			while ( /\G(.*?)(^|\z|\t)/smg ) {
+				$l[-1] .= $1;
+				$l[-1] .= ' ' x ( $tabstop - length("$1") % $tabstop ) if $2;
+			}
+		}
+		else {
+			while ( /\G(.*?)(^|\z|\t)/smg ) {
+				$l[-1] .= $1;
+				$l[-1] .= ' ' x ( $tabstop - (() = "$1" =~ /\PM/g) % $tabstop ) if $2;
+			}
 		}
 	}
 	wantarray ? @l : $l[0];
