@@ -13,7 +13,7 @@ our $tabstop = 8;
 
 sub expand {
 	my @l;
-	for ( @_ ) {
+	for ( wantarray ? @_ : $_[0] ) {
 		push @l, '';
 		while ( /\G(.*?)(^|\z|\t)/smg ) {
 			$l[-1] .= $1;
@@ -25,7 +25,7 @@ sub expand {
 
 sub unexpand
 {
-	my @l = &expand;
+	my @l = wantarray ? &expand : scalar &expand;
 	for ( @l ) {
 		s[((?:(?![\r\n])\PM\pM*){$tabstop})]{
 			my $c = $1, my $chr;
