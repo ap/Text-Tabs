@@ -2,9 +2,8 @@ no strict; no warnings;
 
 package Text::Tabs;
 
-require Exporter;
+BEGIN { require Exporter; *import = \&Exporter::import }
 
-@ISA = (Exporter);
 @EXPORT = qw(expand unexpand $tabstop);
 
 use vars qw($VERSION $SUBVERSION $tabstop);
