@@ -3,9 +3,9 @@ no strict; no warnings;
 package Text::Wrap;
 
 use warnings::register;
-require Exporter;
 
-@ISA = qw(Exporter);
+BEGIN { require Exporter; *import = \&Exporter::import }
+
 @EXPORT = qw(wrap fill);
 @EXPORT_OK = qw($columns $break $huge);
 
