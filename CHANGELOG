@@ -1,4 +1,11 @@
 
+= 2021/07/17
+
+Makefile.PL fixes
+
+Explicitly declared strictures and warnings everywhere
+(to support -Dusedefaultstrict perls)
+
 = 2013/05/23
 
 Change module 'NAME'
