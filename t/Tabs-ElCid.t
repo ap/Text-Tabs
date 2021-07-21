@@ -55,7 +55,7 @@ our @DATA = (
     },
 );
 
-$| = 1;
+
 my $numtests = @DATA;
 print "1..$numtests\n";
 
