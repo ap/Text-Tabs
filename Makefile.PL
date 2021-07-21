@@ -27,6 +27,11 @@ WriteMakefile(
 	),
 	INSTALLDIRS => ( "$]" >= 5.011 ? 'site' : 'perl' ),
 
+	MAN3PODS =>
+		{
+			'lib.modern/Text/Tabs.pm'	=> '$(INST_MAN3DIR)/Text::Tabs.$(MAN3EXT)',
+			'lib.modern/Text/Wrap.pm'	=> '$(INST_MAN3DIR)/Text::Wrap.$(MAN3EXT)',
+		},
 	PM =>
 		{
 			'lib.modern/Text/Tabs.pm'	=> '$(INST_LIBDIR)/Tabs.pm',
