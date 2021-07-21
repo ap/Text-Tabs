@@ -12,12 +12,11 @@ require Exporter;
 $VERSION = '2021.0717';
 $SUBVERSION = 'modern'; # back-compat vestige
 
-use vars qw($VERSION $SUBVERSION $columns $debug $break $huge $unexpand $tabstop $separator $separator2);
+use vars qw($VERSION $SUBVERSION $columns $break $huge $unexpand $tabstop $separator $separator2);
 use strict;
 
 BEGIN	{
 	$columns = 76;  # <= screen width
-	$debug = 0;
 	$break = '(?=\s)(?:\r\n|\PM\pM*)';
 	$huge = 'wrap'; # alternatively: 'die' or 'overflow'
 	$unexpand = 1;
@@ -90,16 +89,8 @@ sub wrap
 	}
 	$r .= $remainder;
 
-	print "-----------$r---------\n" if $debug;
-
-	print "Finish up with '$lead'\n" if $debug;
-
-	my($opos) = pos($t);
-
 	$r .= $lead . substr($t, pos($t), length($t) - pos($t))
 		if pos($t) ne length($t);
-
-	print "-----------$r---------\n" if $debug;;
 
 	return $r;
 }

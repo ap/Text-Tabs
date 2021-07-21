@@ -7,7 +7,7 @@ require Exporter;
 @ISA = (Exporter);
 @EXPORT = qw(expand unexpand $tabstop);
 
-use vars qw($VERSION $SUBVERSION $tabstop $debug);
+use vars qw($VERSION $SUBVERSION $tabstop);
 $VERSION = '2021.0717';
 $SUBVERSION = 'modern'; # back-compat vestige
 
@@ -15,7 +15,6 @@ use strict;
 
 BEGIN	{
 	$tabstop = 8;
-	$debug = 0;
 }
 
 sub expand {
@@ -60,11 +59,6 @@ sub unexpand
 			$lastbit = "\t"
 				if $lastbit eq $ts_as_space;
 			for $_ (@e) {
-				if ($debug) {
-					my $x = $_;
-					$x =~ s/\t/^I\t/gs;
-					print "sub on '$x'\n";
-				}
 				s/  +$/\t/;
 			}
 			$line = join('',@e, $lastbit);
