@@ -1,4 +1,12 @@
 
+= 2021/07/26
+
+Unicode support on all supported versions of Perl
+
+Full strict and warnings cleanliness
+
+Packaging cleanups
+
 = 2021/07/17
 
 Makefile.PL fixes
