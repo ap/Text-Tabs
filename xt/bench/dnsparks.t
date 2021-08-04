@@ -1,10 +1,6 @@
 use strict; use warnings;
 
 BEGIN {
-	if ($ENV{HARNESS_ACTIVE}) {
-		print "1..0 # Skipped: not a regression test\n";
-		exit;
-	}
 	unless (eval { require Benchmark; }) {
 		print "1..0 # Skipped: this test requires Benchmark.pm\n";
 		exit;
