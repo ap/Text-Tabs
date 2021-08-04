@@ -116,8 +116,7 @@ unless ($x ne $y) {
 	exit;
 }
 
-my $cnt = -T STDOUT ? 200 : 40;
-my $results = timethese($cnt, {
+my $results = timethese(-5, {
 	mine => sub { my $res = prefix($columns, $testString) },
 	module => sub { my $res = wrap("", "", $testString) },
 });
