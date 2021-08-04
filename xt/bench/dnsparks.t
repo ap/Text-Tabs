@@ -1,12 +1,5 @@
 use strict; use warnings;
 
-BEGIN {
-	unless (eval { require Benchmark; }) {
-		print "1..0 # Skipped: this test requires Benchmark.pm\n";
-		exit;
-	}
-}
-
 #From:     dnsparks@juno.com
 #Subject:  Text::Wrap suggestions
 #To:       muir@idiom.com
