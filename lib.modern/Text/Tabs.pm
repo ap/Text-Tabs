@@ -15,6 +15,7 @@ sub expand {
 	my @l;
 	my $pad;
 	for ( @_ ) {
+		defined or do { push @l, ''; next };
 		my $s = '';
 		for (split(/^/m, $_, -1)) {
 			my $offs;
@@ -43,6 +44,7 @@ sub unexpand
 	my $lastbit;
 	my $ts_as_space = " " x $tabstop;
 	for $x (@l) {
+		defined $x or next;
 		@lines = split("\n", $x, -1);
 		for $line (@lines) {
 			$line = expand($line);
