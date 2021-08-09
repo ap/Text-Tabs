@@ -6,8 +6,9 @@ use Text::Wrap;
 print "1..1\n";
 
 $Text::Wrap::columns = 1;
-eval { wrap('', '', 'H4sICNoBwDoAA3NpZwA9jbsNwDAIRHumuC4NklvXTOD0KSJEnwU8fHz4Q8M9i3sGzkS7BBrm
+my $ok = eval { wrap('', '', <<''); 1 };
+H4sICNoBwDoAA3NpZwA9jbsNwDAIRHumuC4NklvXTOD0KSJEnwU8fHz4Q8M9i3sGzkS7BBrm
 OkCTwsycb4S3DloZuMIYeXpLFqw5LaMhXC2ymhreVXNWMw9YGuAYdfmAbwomoPSyFJuFn2x8
-Opr8bBBidccAAAA'); };
+Opr8bBBidccAAAA
 
-ok( !$@ ) or diag( $@ );
+ok( $ok, 'no exception thrown' ) or diag( $@ );
