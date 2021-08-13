@@ -10,10 +10,4 @@ eval { wrap('', '', 'H4sICNoBwDoAA3NpZwA9jbsNwDAIRHumuC4NklvXTOD0KSJEnwU8fHz4Q8M
 OkCTwsycb4S3DloZuMIYeXpLFqw5LaMhXC2ymhreVXNWMw9YGuAYdfmAbwomoPSyFJuFn2x8
 Opr8bBBidccAAAA'); };
 
-if ($@) {
-	my $e = $@;
-	$e =~ s/^/# /gm;
-	print $e;
-}
-ok( !$@ );
-
+ok( !$@ ) or diag( $@ );
