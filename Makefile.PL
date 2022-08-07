@@ -2,7 +2,8 @@ use 5.006; use strict; use warnings;
 
 use ExtUtils::MakeMaker;
 
-my $u = 'github.com/ap/Text-Tabs';
+my $sc = q<https://github.com/ap/Text-Tabs>;
+my $bt = q<https://rt.cpan.org/Public/Dist/Display.html?Name=Text-Tabs>;
 
 WriteMakefile( 
 	'NAME'		=> 'Text::Wrap',
@@ -16,8 +17,8 @@ WriteMakefile(
 			META_MERGE	=> {
 				dynamic_config => 0,
 				resources  => {
-					repository => { type => 'git', url => "git://$u.git", web => "https://$u" },
-					bugtracker => { web => "https://$u/issues" },
+					repository => { type => 'git', url => "$sc.git", web => $sc },
+					bugtracker => { web => $bt },
 				},
 				'meta-spec' => { version => 2 },
 			}
