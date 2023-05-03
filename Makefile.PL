@@ -1,4 +1,4 @@
-use 5.006; use strict; use warnings;
+use 5.006001; use strict; use warnings;
 
 use ExtUtils::MakeMaker;
 
@@ -13,7 +13,7 @@ WriteMakefile(
 			AUTHOR		=> 'David Muir Sharnoff <muir@idiom.org>',
 	( eval { ExtUtils::MakeMaker->VERSION(6.48) } ?
 		(
-			MIN_PERL_VERSION => '5.006',
+			MIN_PERL_VERSION => '5.006001',
 			META_MERGE	=> {
 				dynamic_config => 0,
 				resources  => {
