@@ -25,7 +25,7 @@ sub expand {
 					$s .= " " x $pad;
 				}
 				$s .= $_;
-				$offs = () = /\PM/g;
+				$offs = /^\pM/ + ( () = /\PM/g );
 			}
 		}
 		push(@l, $s);
@@ -48,7 +48,7 @@ sub unexpand
 		@lines = split("\n", $x, -1);
 		for $line (@lines) {
 			$line = expand($line);
-			@e = split(/((?:\PM\pM*){$tabstop})/,$line,-1);
+			@e = split(/((?:\PM\pM*|^\pM+){$tabstop})/,$line,-1);
 			$lastbit = pop(@e);
 			$lastbit = '' 
 				unless defined $lastbit;
