@@ -15,7 +15,7 @@ our $SUBVERSION = 'modern'; # back-compat vestige
 BEGIN { eval sprintf 'sub REGEXPS_USE_BYTES () { %d }', pack('U*', 0x80) =~ /\xc2/ }
 
 our $columns = 76;  # <= screen width
-our $break = '(?=\s)(?:\r\n|\PM\pM*)';
+our $break = '(?>\r\n|\s\pM*)';
 our $huge = 'wrap'; # alternatively: 'die' or 'overflow'
 our $unexpand = 1;
 our $tabstop = 8;
@@ -51,17 +51,17 @@ sub wrap
 
 	pos($t) = 0;
 	while ($t !~ /\G(?:$break)*\Z/gc) {
-		if ($t =~ /\G((?:(?!\n)\PM\pM*){0,$ll})($break|\n+|\z)/xmgc) {
+		if ($t =~ /\G((?>(?!\n)\PM\pM*){0,$ll})($break|\n+|\z)/xmgc) {
 			$r .= $unexpand 
 				? unexpand($nl . $lead . $1)
 				: $nl . $lead . $1;
 			$remainder = $2;
-		} elsif ($huge eq 'wrap' && $t =~ /\G((?:(?!\n)\PM\pM*){$ll})/gc) {
+		} elsif ($huge eq 'wrap' && $t =~ /\G((?>(?!\n)\PM\pM*){$ll})/gc) {
 			$r .= $unexpand 
 				? unexpand($nl . $lead . $1)
 				: $nl . $lead . $1;
 			$remainder = defined($separator2) ? $separator2 : $separator;
-		} elsif ($huge eq 'overflow' && $t =~ /\G((?:(?!\n)\PM\pM*)*?)($break|\n+|\z)/xmgc) {
+		} elsif ($huge eq 'overflow' && $t =~ /\G([^\n]*?)(?!\pM)($break|\n+|\z)/xmgc) {
 			$r .= $unexpand 
 				? unexpand($nl . $lead . $1)
 				: $nl . $lead . $1;
