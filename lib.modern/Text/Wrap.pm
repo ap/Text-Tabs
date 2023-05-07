@@ -14,8 +14,10 @@ our $SUBVERSION = 'modern'; # back-compat vestige
 
 BEGIN { eval sprintf 'sub REGEXPS_USE_BYTES () { %d }', pack('U*', 0x80) =~ /\xc2/ }
 
+my $brkspc = "\x{a0}\x{202f}" =~ /\s/ ? '[^\x{a0}\x{202f}\S]' : '\s';
+
 our $columns = 76;  # <= screen width
-our $break = '(?>\n|\r\n|\s\pM*)';
+our $break = '(?>\n|\r\n|'.$brkspc.'\pM*)';
 our $huge = 'wrap'; # alternatively: 'die' or 'overflow'
 our $unexpand = 1;
 our $tabstop = 8;
