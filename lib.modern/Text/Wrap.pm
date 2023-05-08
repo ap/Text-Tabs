@@ -12,6 +12,8 @@ our @EXPORT_OK = qw( $columns $break $huge );
 our $VERSION = '2021.0814';
 our $SUBVERSION = 'modern'; # back-compat vestige
 
+BEGIN { eval sprintf 'sub REGEXPS_USE_BYTES () { %d }', pack('U*', 0x80) =~ /\xc2/ }
+
 our $columns = 76;  # <= screen width
 our $break = '(?=\s)(?:\r\n|\PM\pM*)';
 our $huge = 'wrap'; # alternatively: 'die' or 'overflow'
@@ -87,7 +89,10 @@ sub wrap
 	$r .= $lead . substr($t, pos($t), length($t) - pos($t))
 		if pos($t) ne length($t);
 
-	return $r;
+	# the 5.6 regexp engine ignores the UTF8 flag, so using capture buffers acts as an implicit _utf8_off
+	# that means on 5.6 we now have to manually set UTF8=on on the output if the input had it, for which
+	# we extract just the UTF8 flag from the input and check if it forces chr(0x80) to become multibyte
+	return REGEXPS_USE_BYTES && (substr($t,0,0)."\x80") =~ /\xc2/ ? pack('U0a*', $r) : $r;
 }
 
 sub fill 
