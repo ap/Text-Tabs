@@ -12,7 +12,7 @@ our @EXPORT_OK = qw( $columns $break $huge );
 our $VERSION = '2023.0509';
 our $SUBVERSION = 'modern'; # back-compat vestige
 
-BEGIN { eval sprintf 'sub REGEXPS_USE_BYTES () { %d }', pack('U*', 0x80) =~ /\xc2/ }
+BEGIN { eval sprintf 'sub REGEXPS_USE_BYTES () { %d }', scalar( pack('U*', 0x80) =~ /\xc2/ ) }
 
 my $brkspc = "\x{a0}\x{202f}" =~ /\s/ ? '[^\x{a0}\x{202f}\S]' : '\s';
 
